@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Compose Kit</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="title_activity_buttons_screen">ButtonsScreen</string>
 </resources>
