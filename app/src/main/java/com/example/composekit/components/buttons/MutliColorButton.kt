@@ -18,7 +18,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-
+/**
+ * MultiColorButton
+ *
+ * A button with an animated background color that transitions back and forth between two colors.
+ *
+ * @param text The label displayed on the button.
+ * @param startColor The starting color of the animation. Defaults to theme primary.
+ * @param endColor The ending color of the animation. Defaults to theme secondary.
+ * @param contentColor Color of the text inside the button.
+ * @param onClick Called when the button is clicked.
+ */
 @Composable
 fun MultiColorButton(
     text: String,
@@ -27,14 +37,15 @@ fun MultiColorButton(
     contentColor: Color = MaterialTheme.colorScheme.onPrimary,
     onClick: () -> Unit
 ) {
-    val transition = rememberInfiniteTransition(label = "")
+    val transition = rememberInfiniteTransition(label = "ColorTransition")
     val animatedColor by transition.animateColor(
         initialValue = startColor,
         targetValue = endColor,
         animationSpec = infiniteRepeatable(
             animation = tween(1500),
             repeatMode = RepeatMode.Reverse
-        ), label = ""
+        ),
+        label = "AnimatedButtonColor"
     )
 
     Button(

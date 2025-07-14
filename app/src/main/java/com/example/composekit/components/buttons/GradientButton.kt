@@ -18,6 +18,20 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+/**
+ * GradientButton
+ *
+ * A simple button with a horizontal gradient background.
+ *
+ * Useful when you want a bit of color without overcomplicating the design.
+ *
+ * @param text The label inside the button.
+ * @param modifier Optional modifier for layout control.
+ * @param gradientColors Colors used in the horizontal gradient.
+ * @param textColor Color of the text.
+ * @param cornerRadius Corner radius for the button shape.
+ * @param onClick Called when the button is clicked.
+ */
 @Composable
 fun GradientButton(
     text: String,

@@ -4,12 +4,7 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -19,7 +14,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-
+/**
+ * SlideToggleButton
+ *
+ * A simple custom toggle switch with slide animation.
+ * Changes its background and knob position when toggled.
+ *
+ * Useful as a lightweight alternative to standard switches.
+ *
+ * @param checked Whether the toggle is on or off.
+ * @param onCheckedChange Called with the new value when toggled.
+ */
 @Composable
 fun SlideToggleButton(
     checked: Boolean,

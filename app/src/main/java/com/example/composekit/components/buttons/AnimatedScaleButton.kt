@@ -8,26 +8,35 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.flow.collectLatest
 
+/**
+ * AnimatedScaleButton
+ *
+ * A button that slightly shrinks when you press it — just to show it noticed.
+ *
+ * Makes the button feel more interactive and smooth.
+ *
+ * @param text The text shown inside the button.
+ * @param onClick Called when the button is clicked.
+ */
 @Composable
-fun AnimatedScaleButton(text: String) {
+fun AnimatedScaleButton(
+    text: String,
+    onClick: () -> Unit
+) {
     val interactionSource = remember { MutableInteractionSource() }
     var isPressed by remember { mutableStateOf(false) }
 
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.95f else 1f,
-        animationSpec = tween(100), label = ""
+        animationSpec = tween(100),
+        label = "ButtonScaleAnimation"
     )
 
     LaunchedEffect(interactionSource) {
@@ -40,13 +49,16 @@ fun AnimatedScaleButton(text: String) {
     }
 
     Button(
-        onClick = {},
+        onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
             .scale(scale),
         interactionSource = interactionSource,
         shape = RoundedCornerShape(6.dp)
     ) {
-        Text(text, fontSize = 14.sp)
+        Text(
+            text = text,
+            fontSize = 14.sp
+        )
     }
 }

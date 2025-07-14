@@ -10,6 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.composekit.screens.AnimationScreen
 import com.example.composekit.screens.ButtonsDemoScreen
 import com.example.composekit.screens.HomeScreen
 import com.example.composekit.ui.theme.ComposeKitTheme
@@ -42,5 +43,6 @@ fun NavigationComponent(navController: NavHostController) {
     ) {
         composable(Screen.Home.route) { HomeScreen(navController) }
         composable(Screen.Buttons.route) { ButtonsDemoScreen() }
+        composable(Screen.Animations.route) { AnimationScreen() }
     }
 }

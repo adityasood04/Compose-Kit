@@ -58,4 +58,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.ui)
+    implementation(libs.material3)
+    implementation(libs.androidx.activity.compose.v172)
+    implementation(libs.androidx.animation)
 }

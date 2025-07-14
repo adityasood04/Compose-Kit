@@ -1,22 +1,8 @@
 package com.example.composekit.screens
 
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,22 +10,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ElevatedButton
-import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -47,23 +19,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.composekit.components.buttons.AnimatedBorderButton
-import com.example.composekit.components.buttons.AnimatedScaleButton
-import com.example.composekit.components.buttons.GlassButton
-import com.example.composekit.components.buttons.GradientButton
-import com.example.composekit.components.buttons.MeltingGradientButton
-import com.example.composekit.components.buttons.MultiColorButton
-import com.example.composekit.components.buttons.RippleLoaderButton
-import com.example.composekit.components.buttons.RotatingIconButton
-import com.example.composekit.components.buttons.SlideToggleButton
+import com.example.composekit.components.buttons.*
 import com.example.composekit.ui.theme.ComposeKitTheme
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**
- * Demo screen showcasing all custom and Material buttons
+ * Demo screen showcasing all custom and Material buttons.
  */
 @Composable
 fun ButtonsDemoScreen() {
@@ -71,15 +32,15 @@ fun ButtonsDemoScreen() {
     var isSelected by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
 
-    val shimmerAlpha by rememberInfiniteTransition(label = "")
-        .animateFloat(
-            initialValue = 0.3f,
-            targetValue = 1f,
-            animationSpec = infiniteRepeatable(
-                animation = tween(1000, easing = LinearEasing),
-                repeatMode = RepeatMode.Reverse
-            ), label = ""
-        )
+    val shimmerAlpha by rememberInfiniteTransition(label = "Shimmer").animateFloat(
+        initialValue = 0.3f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "ShimmerAlpha"
+    )
 
     val cornerRadius = 6.dp
 
@@ -96,7 +57,7 @@ fun ButtonsDemoScreen() {
         SectionHeader("Basic Buttons")
         LabeledButton("Primary Button") {
             Button(
-                onClick = { /* TODO */ },
+                onClick = {},
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(cornerRadius)
             ) { Text("Primary") }
@@ -104,7 +65,7 @@ fun ButtonsDemoScreen() {
 
         LabeledButton("Outlined Button") {
             OutlinedButton(
-                onClick = { /* TODO */ },
+                onClick = {},
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(cornerRadius)
             ) { Text("Outlined") }
@@ -112,7 +73,7 @@ fun ButtonsDemoScreen() {
 
         LabeledButton("Text Button") {
             TextButton(
-                onClick = { /* TODO */ },
+                onClick = {},
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(cornerRadius)
             ) { Text("Text") }
@@ -121,7 +82,7 @@ fun ButtonsDemoScreen() {
         SectionHeader("Icon Buttons")
         LabeledButton("Icon with Background") {
             IconButton(
-                onClick = { /* TODO */ },
+                onClick = {},
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(cornerRadius))
@@ -133,21 +94,16 @@ fun ButtonsDemoScreen() {
 
         LabeledButton("Circle Icon Only") {
             Box(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
             ) {
                 IconButton(
-                    onClick = { /* TODO */ },
+                    onClick = {},
                     modifier = Modifier
                         .size(40.dp)
                         .background(MaterialTheme.colorScheme.primary, shape = CircleShape)
                 ) {
-                    Icon(
-                        Icons.Default.ArrowForward,
-                        contentDescription = null,
-                        tint = Color.White
-                    )
+                    Icon(Icons.Default.ArrowForward, contentDescription = null, tint = Color.White)
                 }
             }
         }
@@ -155,24 +111,20 @@ fun ButtonsDemoScreen() {
         SectionHeader("Variant Buttons")
         LabeledButton("Filled Tonal") {
             FilledTonalButton(
-                onClick = { /* TODO */ },
+                onClick = {},
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(cornerRadius))
-            ) {
-                Text("Filled Tonal")
-            }
+            ) { Text("Filled Tonal") }
         }
 
         LabeledButton("Elevated") {
             ElevatedButton(
-                onClick = { /* TODO */ },
+                onClick = {},
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(cornerRadius))
-            ) {
-                Text("Elevated")
-            }
+            ) { Text("Elevated") }
         }
 
         LabeledButton("Gradient Button") {
@@ -185,11 +137,9 @@ fun ButtonsDemoScreen() {
 
         LabeledButton("Shimmer Button") {
             Button(
-                onClick = { /* TODO */ },
+                onClick = {},
                 shape = RoundedCornerShape(cornerRadius),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(cornerRadius)),
+                modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary.copy(alpha = shimmerAlpha),
                     contentColor = MaterialTheme.colorScheme.onPrimary
@@ -200,7 +150,7 @@ fun ButtonsDemoScreen() {
         }
 
         LabeledButton("Animated Scale") {
-            AnimatedScaleButton("Tap Me")
+            AnimatedScaleButton("Tap Me", onClick = {})
         }
 
         SectionHeader("Stateful Buttons")
@@ -208,9 +158,7 @@ fun ButtonsDemoScreen() {
             Button(
                 onClick = { loading = !loading },
                 shape = RoundedCornerShape(cornerRadius),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(cornerRadius))
+                modifier = Modifier.fillMaxWidth()
             ) {
                 if (loading) {
                     CircularProgressIndicator(
@@ -220,7 +168,9 @@ fun ButtonsDemoScreen() {
                     )
                     Spacer(Modifier.width(8.dp))
                     Text("Loading...")
-                } else Text("Submit")
+                } else {
+                    Text("Submit")
+                }
             }
         }
 
@@ -228,9 +178,7 @@ fun ButtonsDemoScreen() {
             Button(
                 onClick = { isSelected = !isSelected },
                 shape = RoundedCornerShape(cornerRadius),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(cornerRadius)),
+                modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (isSelected) Color(0xFF2E7D32) else Color.Gray,
                     contentColor = Color.White
@@ -246,24 +194,27 @@ fun ButtonsDemoScreen() {
         }
 
         LabeledButton("Glassmorphic Button") {
-            GlassButton("Glass ripple", onClick = { /* TODO */ })
+            GlassButton("Glass ripple") {}
         }
 
         LabeledButton("Animated Border") {
             AnimatedBorderButton(
                 text = "Follow me",
                 borderColors = listOf(Color.Red, Color.Green, Color.Blue),
-                onClick = { /* TODO */ })
+                onClick = {}
+            )
         }
 
         LabeledButton("Ripple button") {
             var isLoading by remember { mutableStateOf(false) }
+
             RippleLoaderButton(
                 text = "Send",
                 onClick = {
+                    // guys it's just a demo for showing animation
                     isLoading = true
                     CoroutineScope(Dispatchers.Main).launch {
-                        delay(5000)
+                        delay(3000)
                         isLoading = false
                     }
                 },
@@ -275,18 +226,11 @@ fun ButtonsDemoScreen() {
         }
 
         LabeledButton("Rotating Icon Button") {
-            RotatingIconButton(
-                text = "Sync",
-                onClick = { /* TODO */ }
-            )
+            RotatingIconButton(text = "Sync") {}
         }
 
-
         LabeledButton("Melting Gradient Button") {
-            MeltingGradientButton(
-                text = "Melting",
-                onClick = { /* TODO */ }
-            )
+            MeltingGradientButton(text = "Melting") {}
         }
 
         LabeledButton("Slide Toggle Button") {
@@ -301,10 +245,7 @@ fun ButtonsDemoScreen() {
                     onCheckedChange = { isToggled = it }
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = if (isToggled) "Toggled ON" else "Toggled OFF",
-                    fontSize = 14.sp
-                )
+                Text(text = if (isToggled) "Toggled ON" else "Toggled OFF", fontSize = 14.sp)
             }
         }
     }

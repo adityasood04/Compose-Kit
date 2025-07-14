@@ -1,14 +1,7 @@
 package com.example.composekit.components.buttons
 
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.animation.core.*
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
@@ -22,19 +15,31 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
-
+/**
+ * RotatingIconButton
+ *
+ * A button with a rotating icon animation, useful for actions like refresh or sync.
+ * The icon spins continuously to indicate a repeating or loading-like state.
+ *
+ * @param text The text displayed next to the icon.
+ * @param icon The icon to rotate (defaults to [Icons.Default.Refresh]).
+ * @param onClick Called when the button is clicked.
+ */
 @Composable
 fun RotatingIconButton(
     text: String = "Sync",
     icon: ImageVector = Icons.Default.Refresh,
     onClick: () -> Unit
 ) {
-    val infiniteTransition = rememberInfiniteTransition(label = "")
+    val infiniteTransition = rememberInfiniteTransition(label = "RotationTransition")
     val angle by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 360f,
-        animationSpec = infiniteRepeatable(tween(2000), RepeatMode.Restart),
-        label = ""
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 2000),
+            repeatMode = RepeatMode.Restart
+        ),
+        label = "RotationAngle"
     )
 
     Button(
@@ -43,13 +48,13 @@ fun RotatingIconButton(
         shape = RoundedCornerShape(6.dp)
     ) {
         Icon(
-            icon,
+            imageVector = icon,
             contentDescription = null,
             modifier = Modifier
                 .size(20.dp)
                 .graphicsLayer { rotationZ = angle }
         )
         Spacer(modifier = Modifier.width(8.dp))
-        Text(text)
+        Text(text = text)
     }
 }

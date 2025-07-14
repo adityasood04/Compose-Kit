@@ -1,10 +1,6 @@
 package com.example.composekit.components.buttons
 
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,17 +13,30 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-
+/**
+ * MeltingGradientButton
+ *
+ * A text button with a slowly pulsing vertical gradient background.
+ * The animation creates a subtle "melting" or breathing effect.
+ *
+ * Good for slightly highlighting non-primary actions without using a solid button.
+ *
+ * @param text The label displayed on the button.
+ * @param onClick Called when the button is clicked.
+ */
 @Composable
 fun MeltingGradientButton(
     text: String,
     onClick: () -> Unit
 ) {
-    val alpha by rememberInfiniteTransition(label = "").animateFloat(
+    val alpha by rememberInfiniteTransition(label = "MeltingAlphaTransition").animateFloat(
         initialValue = 0.6f,
         targetValue = 1f,
-        animationSpec = infiniteRepeatable(tween(1200), RepeatMode.Reverse),
-        label = ""
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 1200),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "AlphaAnimation"
     )
 
     val brush = Brush.verticalGradient(

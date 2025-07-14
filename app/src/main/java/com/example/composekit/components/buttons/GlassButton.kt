@@ -20,15 +20,30 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-
+/**
+ * GlassButton
+ *
+ * A frosted-glass-style button that changes slightly for light and dark themes.
+ *
+ * It gives a soft blur and translucent background — great for overlays or modern UIs.
+ *
+ * @param text The text shown inside the button.
+ * @param onClick Called when the button is tapped.
+ */
 @Composable
-fun GlassButton(text: String, onClick: () -> Unit) {
+fun GlassButton(
+    text: String,
+    onClick: () -> Unit
+) {
     val isDark = isSystemInDarkTheme()
+
     val backgroundBrush = Brush.linearGradient(
         colors = if (isDark)
             listOf(Color.White.copy(alpha = 0.2f), Color.White.copy(alpha = 0.05f))
-        else listOf(Color.Black.copy(alpha = 0.08f), Color.Black.copy(alpha = 0.02f))
+        else
+            listOf(Color.Black.copy(alpha = 0.08f), Color.Black.copy(alpha = 0.02f))
     )
+
     val borderColor = if (isDark) Color.White.copy(alpha = 0.3f) else Color.Black.copy(alpha = 0.1f)
     val textColor = if (isDark) Color.White else Color.Black
 
@@ -43,6 +58,11 @@ fun GlassButton(text: String, onClick: () -> Unit) {
             .blur(10.dp),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = text, color = textColor, fontWeight = FontWeight.Medium, fontSize = 14.sp)
+        Text(
+            text = text,
+            color = textColor,
+            fontWeight = FontWeight.Medium,
+            fontSize = 14.sp
+        )
     }
 }
