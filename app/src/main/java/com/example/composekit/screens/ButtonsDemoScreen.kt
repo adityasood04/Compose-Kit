@@ -19,6 +19,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.composekit.common.LabeledComponent
+import com.example.composekit.common.SectionHeader
 import com.example.composekit.components.buttons.*
 import com.example.composekit.ui.theme.ComposeKitTheme
 import kotlinx.coroutines.*
@@ -55,7 +57,7 @@ fun ButtonsDemoScreen() {
         Text("Button Components", style = MaterialTheme.typography.headlineSmall)
 
         SectionHeader("Basic Buttons")
-        LabeledButton("Primary Button") {
+        LabeledComponent("Primary Button") {
             Button(
                 onClick = {},
                 modifier = Modifier.fillMaxWidth(),
@@ -63,7 +65,7 @@ fun ButtonsDemoScreen() {
             ) { Text("Primary") }
         }
 
-        LabeledButton("Outlined Button") {
+        LabeledComponent("Outlined Button") {
             OutlinedButton(
                 onClick = {},
                 modifier = Modifier.fillMaxWidth(),
@@ -71,7 +73,7 @@ fun ButtonsDemoScreen() {
             ) { Text("Outlined") }
         }
 
-        LabeledButton("Text Button") {
+        LabeledComponent("Text Button") {
             TextButton(
                 onClick = {},
                 modifier = Modifier.fillMaxWidth(),
@@ -80,7 +82,7 @@ fun ButtonsDemoScreen() {
         }
 
         SectionHeader("Icon Buttons")
-        LabeledButton("Icon with Background") {
+        LabeledComponent("Icon with Background") {
             IconButton(
                 onClick = {},
                 modifier = Modifier
@@ -92,7 +94,7 @@ fun ButtonsDemoScreen() {
             }
         }
 
-        LabeledButton("Circle Icon Only") {
+        LabeledComponent("Circle Icon Only") {
             Box(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
@@ -109,7 +111,7 @@ fun ButtonsDemoScreen() {
         }
 
         SectionHeader("Variant Buttons")
-        LabeledButton("Filled Tonal") {
+        LabeledComponent("Filled Tonal") {
             FilledTonalButton(
                 onClick = {},
                 modifier = Modifier
@@ -118,7 +120,7 @@ fun ButtonsDemoScreen() {
             ) { Text("Filled Tonal") }
         }
 
-        LabeledButton("Elevated") {
+        LabeledComponent("Elevated") {
             ElevatedButton(
                 onClick = {},
                 modifier = Modifier
@@ -127,7 +129,7 @@ fun ButtonsDemoScreen() {
             ) { Text("Elevated") }
         }
 
-        LabeledButton("Gradient Button") {
+        LabeledComponent("Gradient Button") {
             GradientButton(
                 text = "Sign Up",
                 gradientColors = listOf(Color(0xFF00796B), Color(0xFF0097A7)),
@@ -135,7 +137,7 @@ fun ButtonsDemoScreen() {
             ) {}
         }
 
-        LabeledButton("Shimmer Button") {
+        LabeledComponent("Shimmer Button") {
             Button(
                 onClick = {},
                 shape = RoundedCornerShape(cornerRadius),
@@ -149,12 +151,12 @@ fun ButtonsDemoScreen() {
             }
         }
 
-        LabeledButton("Animated Scale") {
+        LabeledComponent("Animated Scale") {
             AnimatedScaleButton("Tap Me", onClick = {})
         }
 
         SectionHeader("Stateful Buttons")
-        LabeledButton("Loading Button") {
+        LabeledComponent("Loading Button") {
             Button(
                 onClick = { loading = !loading },
                 shape = RoundedCornerShape(cornerRadius),
@@ -174,7 +176,7 @@ fun ButtonsDemoScreen() {
             }
         }
 
-        LabeledButton("Toggleable Button") {
+        LabeledComponent("Toggleable Button") {
             Button(
                 onClick = { isSelected = !isSelected },
                 shape = RoundedCornerShape(cornerRadius),
@@ -189,15 +191,15 @@ fun ButtonsDemoScreen() {
         }
 
         SectionHeader("Animated Buttons")
-        LabeledButton("Multi color button") {
+        LabeledComponent("Multi color button") {
             MultiColorButton(text = "Multi color", startColor = Color.Red, endColor = Color.Blue) {}
         }
 
-        LabeledButton("Glassmorphic Button") {
+        LabeledComponent("Glassmorphic Button") {
             GlassButton("Glass ripple") {}
         }
 
-        LabeledButton("Animated Border") {
+        LabeledComponent("Animated Border") {
             AnimatedBorderButton(
                 text = "Follow me",
                 borderColors = listOf(Color.Red, Color.Green, Color.Blue),
@@ -205,7 +207,7 @@ fun ButtonsDemoScreen() {
             )
         }
 
-        LabeledButton("Ripple button") {
+        LabeledComponent("Ripple button") {
             var isLoading by remember { mutableStateOf(false) }
 
             RippleLoaderButton(
@@ -225,15 +227,15 @@ fun ButtonsDemoScreen() {
             )
         }
 
-        LabeledButton("Rotating Icon Button") {
+        LabeledComponent("Rotating Icon Button") {
             RotatingIconButton(text = "Sync") {}
         }
 
-        LabeledButton("Melting Gradient Button") {
+        LabeledComponent("Melting Gradient Button") {
             MeltingGradientButton(text = "Melting") {}
         }
 
-        LabeledButton("Slide Toggle Button") {
+        LabeledComponent("Slide Toggle Button") {
             var isToggled by remember { mutableStateOf(false) }
 
             Column(
@@ -251,31 +253,6 @@ fun ButtonsDemoScreen() {
     }
 }
 
-@Composable
-fun SectionHeader(text: String) {
-    Text(
-        text = text,
-        style = MaterialTheme.typography.titleMedium,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 12.dp),
-        color = MaterialTheme.colorScheme.primary,
-        fontSize = 15.sp
-    )
-}
-
-@Composable
-fun LabeledButton(label: String, content: @Composable () -> Unit) {
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(bottom = 4.dp),
-            fontSize = 14.sp
-        )
-        content()
-    }
-}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable

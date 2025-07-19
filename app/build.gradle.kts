@@ -62,4 +62,5 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.androidx.activity.compose.v172)
     implementation(libs.androidx.animation)
+    implementation(libs.androidx.material.icons.extended)
 }

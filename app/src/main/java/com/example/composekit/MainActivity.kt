@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.composekit.screens.AnimationScreen
 import com.example.composekit.screens.ButtonsDemoScreen
 import com.example.composekit.screens.HomeScreen
+import com.example.composekit.screens.TextFieldsDemoScreen
 import com.example.composekit.ui.theme.ComposeKitTheme
 
 class MainActivity : ComponentActivity() {
@@ -43,6 +44,7 @@ fun NavigationComponent(navController: NavHostController) {
     ) {
         composable(Screen.Home.route) { HomeScreen(navController) }
         composable(Screen.Buttons.route) { ButtonsDemoScreen() }
+        composable(Screen.TextField.route) { TextFieldsDemoScreen() }
         composable(Screen.Animations.route) { AnimationScreen() }
     }
 }
