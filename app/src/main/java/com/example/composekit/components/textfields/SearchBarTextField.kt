@@ -3,25 +3,28 @@ package com.example.composekit.components.textfields
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
+/**
+ * SearchBarTextField
+ *
+ * A reusable search input field with a leading search icon and trailing clear button.
+ * Displays a placeholder and handles dynamic user input. Ideal for search bars in apps.
+ *
+ * @param value The current text in the search field.
+ * @param onValueChange Callback triggered when the user types or clears the field.
+ * @param placeholder The placeholder text shown when the field is empty. Default is "Search...".
+ * @param modifier Modifier to customize layout and appearance.
+ */
 @Composable
 fun SearchBarTextField(
     value: String,
@@ -32,7 +35,7 @@ fun SearchBarTextField(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        placeholder = { Text(placeholder) },
+        placeholder = { Text(text = placeholder) },
         modifier = modifier
             .fillMaxWidth()
             .height(56.dp)

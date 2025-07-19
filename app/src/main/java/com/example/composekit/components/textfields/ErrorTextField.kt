@@ -8,7 +8,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
-
+/**
+ * ErrorTextField
+ *
+ * A reusable text field that displays an error message below the input when validation fails.
+ *
+ * @param value Current input text.
+ * @param onValueChange Callback when text is updated.
+ * @param label Label for the text field. Defaults to "Email".
+ * @param isError Whether the input is currently invalid.
+ * @param errorMessage Message shown below the text field when isError is true.
+ * @param modifier Optional modifier for customization.
+ */
 @Composable
 fun ErrorTextField(
     value: String,

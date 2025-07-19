@@ -8,15 +8,22 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 
+/**
+ * PasswordTextField
+ *
+ * A reusable password input field with a visibility toggle icon.
+ * Useful in login or signup forms where password input is required.
+ *
+ * @param password The current text in the password field.
+ * @param onPasswordChange Callback triggered when the password changes.
+ * @param label The label to show inside the text field. Defaults to "Password".
+ * @param modifier Modifier to customize the layout or styling.
+ */
 @Composable
 fun PasswordTextField(
     password: String,
@@ -29,12 +36,18 @@ fun PasswordTextField(
     OutlinedTextField(
         value = password,
         onValueChange = onPasswordChange,
-        label = { Text(label) },
+        label = { Text(text = label) },
         modifier = modifier.fillMaxWidth(),
-        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+        visualTransformation = if (passwordVisible)
+            VisualTransformation.None
+        else
+            PasswordVisualTransformation(),
         trailingIcon = {
-            val icon =
-                if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
+            val icon = if (passwordVisible)
+                Icons.Default.Visibility
+            else
+                Icons.Default.VisibilityOff
+
             IconButton(onClick = { passwordVisible = !passwordVisible }) {
                 Icon(imageVector = icon, contentDescription = null)
             }

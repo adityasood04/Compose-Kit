@@ -8,12 +8,23 @@ import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.SegmentedButtonDefaults.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
+/**
+ * ValidationTextField
+ *
+ * A reusable text field that shows a validation icon based on user input.
+ * It can indicate success, error, or neutral (info) state via icons and colors.
+ *
+ * @param value The current text input.
+ * @param onValueChange Callback triggered when the text changes.
+ * @param label Label shown in the text field.
+ * @param isValid The validation state of the input: true (valid), false (invalid), or null (neutral).
+ * @param modifier Modifier for customizing layout and appearance.
+ */
 @Composable
 fun ValidationTextField(
     value: String,
@@ -25,7 +36,7 @@ fun ValidationTextField(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(label) },
+        label = { Text(text = label) },
         trailingIcon = {
             AnimatedVisibility(visible = isValid != null) {
                 Icon(
@@ -36,9 +47,9 @@ fun ValidationTextField(
                     },
                     contentDescription = null,
                     tint = when (isValid) {
-                        true -> Color(0xFF2E7D32)
-                        false -> Color(0xFFD32F2F)
-                        else -> Color.Gray
+                        true -> Color(0xFF2E7D32)   // Green
+                        false -> Color(0xFFD32F2F)  // Red
+                        else -> Color.Gray          // Neutral
                     }
                 )
             }
@@ -48,4 +59,3 @@ fun ValidationTextField(
         singleLine = true
     )
 }
-
