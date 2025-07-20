@@ -4,127 +4,188 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectDragGestures
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.HourglassEmpty
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import com.example.composekit.R
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.math.abs
 import kotlin.math.roundToInt
 
-
 // data class for user
-data class User(val name: String, val age: Int, val address: String)
+data class User(val name: String, val age: Int, val address: String, val dp: Int)
 
 @Composable
 fun TinderSwipeScreen() {
     val dummyUsers = remember {
         mutableStateListOf(
-            User("Shinchan", 5, "Kasukabe, Japan"),
-            User("Doraemon", 12, "Tokyo, Japan"),
-            User("Bheem", 10, "Dholakpur"),
-            User("Jerry", 3, "Mouse Hole, NYC"),
-            User("Aditya", 22, "Himachal Pradesh"),
+            User("Shinchan", 5, "Kasukabe, Japan", R.drawable.shin_dp),
+            User("Doraemon", 12, "Tokyo, Japan", R.drawable.dora_dp),
+            User("Bheem", 10, "Dholakpur", R.drawable.bheem_dp),
+            User("Jerry", 3, "Mouse Hole, NYC", R.drawable.jerry_dp),
+            User("Aditya", 22, "Himachal Pradesh", R.drawable.adi_dp),
         )
     }
-    Text(
-        "Tinder Screen mockup",
-        Modifier.padding(16.dp),
-        style = MaterialTheme.typography.headlineSmall,
-        color = MaterialTheme.colorScheme.primary,
-        fontSize = 18.sp,
-        textAlign = TextAlign.Center
-    )
 
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        dummyUsers.forEachIndexed { index, user ->
-            val isTop = index == dummyUsers.lastIndex
-            AnimatedVisibility(
-                visible = true,
-                enter = fadeIn(animationSpec = tween(400, delayMillis = index * 100)) +
-                        scaleIn(
-                            initialScale = 0.85f,
-                            animationSpec = tween(400, delayMillis = index * 100)
-                        )
-            ) {
-                if (isTop) {
-                    SwipeableCard(user = user) {
-                        dummyUsers.removeAt(index)
+    Scaffold(
+        bottomBar = {
+            if (dummyUsers.isNotEmpty()) {
+                ActionBar(
+                    onLike = {
+                        dummyUsers.removeLastOrNull()
+                    },
+                    onDislike = {
+                        dummyUsers.removeLastOrNull()
+                    },
+                    onContact = {
+
                     }
-                } else {
-                    ProfileCard(
-                        user = user,
-                        modifier = Modifier
-                            .offset(y = (10 * (dummyUsers.size - index)).dp)
-                            .graphicsLayer {
-                                scaleX = 0.95f
-                                scaleY = 0.95f
-                            }
+                )
+            }
+        }
+    ) { paddingValues ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(
+                            MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.1f),
+                            MaterialTheme.colorScheme.background
+                        )
                     )
+                ),
+            contentAlignment = Alignment.Center
+        ) {
+            if (dummyUsers.isEmpty()) {
+                EmptyState()
+            } else {
+                dummyUsers.forEachIndexed { index, user ->
+                    val isTop = index == dummyUsers.lastIndex
+                    val offset = (dummyUsers.size - index - 1) * 10
+
+                    AnimatedVisibility(
+                        visible = true,
+                        enter = fadeIn(tween(400, delayMillis = index * 100)) +
+                                scaleIn(initialScale = 0.85f, animationSpec = tween(400, delayMillis = index * 100))
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .offset(y = offset.dp)
+                                .graphicsLayer {
+                                    scaleX = 1f - (0.05f * (dummyUsers.size - index - 1))
+                                    scaleY = 1f - (0.05f * (dummyUsers.size - index - 1))
+                                }
+                        ) {
+                            if (isTop) {
+                                SwipeableCard(user = user) {
+                                    dummyUsers.removeAt(index)
+                                }
+                            } else {
+                                ProfileCard(user = user)
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 }
 
+@Composable
+fun EmptyState() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Icon(
+            imageVector = Icons.Default.HourglassEmpty,
+            contentDescription = "No more profiles",
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.size(64.dp)
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "No more profiles nearby",
+            style = MaterialTheme.typography.headlineMedium,
+            color = MaterialTheme.colorScheme.onBackground
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text = "Check back later for new matches",
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f)
+        )
+    }
+}
+
+
 
 @Composable
-fun SwipeableCard(
-    user: User,
-    onSwiped: () -> Unit
-) {
+fun SwipeableCard(user: User, onSwiped: () -> Unit) {
     val offsetX = remember { Animatable(0f) }
+    val offsetY = remember { Animatable(0f) }
     val scope = rememberCoroutineScope()
     val rotationDegrees = (offsetX.value / 60).coerceIn(-40f, 40f)
 
     Box(
         modifier = Modifier
-            .size(300.dp, 450.dp)
-            .offset { IntOffset(offsetX.value.roundToInt(), 0) }
-            .graphicsLayer(rotationZ = rotationDegrees)
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(8.dp)
+            .offset { IntOffset(offsetX.value.roundToInt(), offsetY.value.roundToInt()) }
+            .graphicsLayer {
+                rotationZ = rotationDegrees
+                alpha = 1f - (abs(offsetX.value) / 1000f)
+            }
             .pointerInput(Unit) {
                 detectDragGestures(
                     onDragEnd = {
-                        if (offsetX.value > 300f || offsetX.value < -300f) {
-                            scope.launch {
-                                offsetX.animateTo(
-                                    targetValue = if (offsetX.value > 0) 1000f else -1000f,
-                                    animationSpec = tween(300)
-                                )
+                        scope.launch {
+                            if (offsetX.value > 300f) {
+                                offsetX.animateTo(1000f, tween(300))
                                 onSwiped()
-                                offsetX.snapTo(0f)
-                            }
-                        } else {
-                            scope.launch {
-                                offsetX.animateTo(0f, animationSpec = tween(300))
+                            } else if (offsetX.value < -300f) {
+                                offsetX.animateTo(-1000f, tween(300))
+                                onSwiped()
+                            } else {
+                                offsetX.animateTo(0f, tween(300))
+                                offsetY.animateTo(0f, tween(300))
                             }
                         }
                     },
@@ -132,6 +193,7 @@ fun SwipeableCard(
                         change.consume()
                         scope.launch {
                             offsetX.snapTo(offsetX.value + dragAmount.x)
+                            offsetY.snapTo(offsetY.value + dragAmount.y)
                         }
                     }
                 )
@@ -142,80 +204,143 @@ fun SwipeableCard(
     }
 }
 
-
 @Composable
 fun ProfileCard(user: User, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
-            .size(300.dp, 450.dp),
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
         shape = RoundedCornerShape(24.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        elevation = CardDefaults.cardElevation(8.dp)
     ) {
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surface)
+            modifier = Modifier.fillMaxWidth()
         ) {
+            Image(
+                painter = painterResource(user.dp),
+                contentDescription = "Profile picture",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(500.dp)
+            )
+
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
+                    .height(200.dp)
+                    .align(Alignment.BottomCenter)
                     .background(
                         Brush.verticalGradient(
                             colors = listOf(
                                 Color.Transparent,
-                                MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
+                                Color.Black.copy(alpha = 0.7f)
                             ),
-                            startY = 300f
+                            startY = 0f
                         )
                     )
             )
 
-            // Profile image part
-            Box(
-                modifier = Modifier
-                    .size(150.dp)
-                    .align(Alignment.TopCenter)
-                    .offset(y = 16.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primary)
-            ) {
-                // You can load an image here
-                Text(
-                    text = user.name.first().toString(),
-                    modifier = Modifier.align(Alignment.Center),
-                    color = Color.White,
-                    fontSize = 36.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-
-            // User info part
             Column(
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .padding(16.dp)
+                    .padding(24.dp)
             ) {
                 Text(
                     text = user.name,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    style = MaterialTheme.typography.displaySmall,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
                 )
+
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = "Age: ${user.age}",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = Color.Black
-                )
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = "Address: ${user.address}",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = Color.Black
-                )
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    Text(
+                        text = "${user.age} years old",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White.copy(alpha = 0.8f)
+                    )
+
+                    Spacer(modifier = Modifier.width(12.dp))
+
+                    Icon(
+                        imageVector = Icons.Default.LocationOn,
+                        contentDescription = "Location",
+                        tint = Color.White.copy(alpha = 0.8f),
+                        modifier = Modifier.size(16.dp)
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = user.address,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White.copy(alpha = 0.8f)
+                    )
+                }
             }
+        }
+    }
+}
+
+@Composable
+fun ActionBar(
+    onLike: () -> Unit,
+    onDislike: () -> Unit,
+    onContact: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp, vertical = 16.dp)
+    ) {
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .shadow(
+                    elevation = 16.dp,
+                    shape = RoundedCornerShape(24.dp),
+                    clip = false
+                )
+                .blur(radius = 8.dp),
+            shape = RoundedCornerShape(24.dp),
+            tonalElevation = 8.dp
+        ) {
+            Box(modifier = Modifier.height(80.dp))
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp)
+                .padding(horizontal = 32.dp, vertical = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = "Dislike",
+                    tint = Color.Red,
+                    modifier = Modifier.size(32.dp)
+                )
+                Icon(
+                    imageVector = Icons.Default.Phone,
+                    contentDescription = "Contact",
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(28.dp)
+                )
+
+                Icon(
+                    imageVector = Icons.Default.Favorite,
+                    contentDescription = "Like",
+                    tint = Color(0xFF4CAF50),
+                    modifier = Modifier.size(32.dp)
+                )
+
         }
     }
 }
