@@ -1,8 +1,10 @@
 package com.example.composekit
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -14,6 +16,7 @@ import com.example.composekit.screens.AnimationScreen
 import com.example.composekit.screens.ButtonsDemoScreen
 import com.example.composekit.screens.HomeScreen
 import com.example.composekit.screens.TextFieldsDemoScreen
+import com.example.composekit.screens.TinderSwipeScreen
 import com.example.composekit.ui.theme.ComposeKitTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,6 +48,7 @@ fun NavigationComponent(navController: NavHostController) {
         composable(Screen.Home.route) { HomeScreen(navController) }
         composable(Screen.Buttons.route) { ButtonsDemoScreen() }
         composable(Screen.TextField.route) { TextFieldsDemoScreen() }
+        composable(Screen.Tinder.route) { TinderSwipeScreen() }
         composable(Screen.Animations.route) { AnimationScreen() }
     }
 }
