@@ -20,9 +20,12 @@ A quick look at all major component:
     </td>
      <td align="center">
       <strong>Tinder (Card Swipe)</strong><br/>
-      <img width="200" height="500" alt="image" src="https://github.com/user-attachments/assets/df26d3e7-b238-4da8-a170-0f97b4da0973" />
+      <img width="200" height="500" alt="img" src="https://github.com/user-attachments/assets/4284bd17-dc29-40ad-8642-54c915ea4311" />
     </td>
-    
+    <td align="center">
+      <strong>Instagram Mockup</strong><br/>
+      <img width="200" height="500" alt="image" src="https://github.com/user-attachments/assets/2ec920ce-9cf2-49a2-a6b6-6fdee07e1a83" />
+    </td>
   </tr>
 </table>
 
@@ -44,9 +47,10 @@ A quick look at all major component:
 
 | Category | Folder |
 |----------|--------|
-| ButtonsDemoScreen | [`screens/buttonsDemoScreen`](https://github.com/adityasood04/Compose-Kit/blob/main/app/src/main/java/com/example/composekit/screens/ButtonsDemoScreen.kt) |
-| TextFieldsDemoScreen | [`screens/textFieldsDemoScreen`](https://github.com/adityasood04/Compose-Kit/blob/main/app/src/main/java/com/example/composekit/screens/TextFieldsDemoScreen.kt) |
-| Tinder (Card swipe) | [`components/textFields`](https://github.com/adityasood04/Compose-Kit/tree/main/app/src/main/java/com/example/composekit/screens/TinderScreebMockUp.kt) |
+| ButtonsDemoScreen | [`screens/ButtonsDemoScreen`](https://github.com/adityasood04/Compose-Kit/blob/main/app/src/main/java/com/example/composekit/screens/ButtonsDemoScreen.kt) |
+| TextFieldsDemoScreen | [`screens/TextFieldsDemoScreen`](https://github.com/adityasood04/Compose-Kit/blob/main/app/src/main/java/com/example/composekit/screens/TextFieldsDemoScreen.kt) |
+| Tinder (Card swipe) | [`screens/TinderScreenMockup`](https://github.com/adityasood04/Compose-Kit/tree/main/app/src/main/java/com/example/composekit/screens/TinderScreebMockUp.kt) |
+| Instagram | [`screens/InstagramMockup`](https://github.com/adityasood04/Compose-Kit/tree/main/app/src/main/java/com/example/composekit/screens/InstagramMockup.kt) |
 
 
 ---
