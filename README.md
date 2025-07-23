@@ -12,19 +12,20 @@ A quick look at all major component:
   <tr>
     <td align="center">
       <strong>Buttons</strong><br/>
-      <img alt="Buttons" src="https://github.com/user-attachments/assets/1ca6da50-0744-42b9-828d-5363836c08c3" style="width: 200px; height: 500px; object-fit: cover;" />
+      <img alt="Buttons" src="https://github.com/user-attachments/assets/1ca6da50-0744-42b9-828d-5363836c08c3" style="width: 215px; height: 500px; object-fit: cover;" />
     </td>
     <td align="center">
       <strong>Text Fields</strong><br/>
-      <img alt="Text Fields" src="https://github.com/user-attachments/assets/23b83fbe-25d4-4849-ae4c-d675159c1c0b" style="width: 200px; height: 500px; object-fit: cover;" />
+      <img alt="Text Fields" src="https://github.com/user-attachments/assets/23b83fbe-25d4-4849-ae4c-d675159c1c0b" style="width: 215px; height: 500px; object-fit: cover;" />
     </td>
     <td align="center">
       <strong>Tinder (Card Swipe)</strong><br/>
-      <img alt="Tinder" src="https://github.com/user-attachments/assets/4284bd17-dc29-40ad-8642-54c915ea4311" style="width: 200px; height: 500px; object-fit: cover;" />
+      <img alt="Tinder" src="https://github.com/user-attachments/assets/4284bd17-dc29-40ad-8642-54c915ea4311" style="width: 215px; height: 500px; object-fit: cover;" />
     </td>
+    </tr><tr>
     <td align="center">
       <strong>Instagram Mockup</strong><br/>
-      <img alt="Instagram Mockup" src="https://github.com/user-attachments/assets/2ec920ce-9cf2-49a2-a6b6-6fdee07e1a83" style="width: 200px; height: 500px; object-fit: cover;" />
+      <img alt="Instagram Mockup" src="https://github.com/user-attachments/assets/2ec920ce-9cf2-49a2-a6b6-6fdee07e1a83" style="width: 215px; height: 500px; object-fit: cover;" />
     </td>
   </tr>
 </table>
