@@ -1,10 +1,8 @@
 package com.example.composekit
 
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.RequiresApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -15,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.composekit.screens.AnimationScreen
 import com.example.composekit.screens.ButtonsDemoScreen
 import com.example.composekit.screens.HomeScreen
+import com.example.composekit.screens.InstagramDemoScreen
 import com.example.composekit.screens.TextFieldsDemoScreen
 import com.example.composekit.screens.TinderSwipeScreen
 import com.example.composekit.ui.theme.ComposeKitTheme
@@ -49,6 +48,7 @@ fun NavigationComponent(navController: NavHostController) {
         composable(Screen.Buttons.route) { ButtonsDemoScreen() }
         composable(Screen.TextField.route) { TextFieldsDemoScreen() }
         composable(Screen.Tinder.route) { TinderSwipeScreen() }
+        composable(Screen.Instagram.route) { InstagramDemoScreen() }
         composable(Screen.Animations.route) { AnimationScreen() }
     }
 }
