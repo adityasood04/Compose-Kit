@@ -27,6 +27,10 @@ A quick look at all major component:
       <strong>Instagram Mockup</strong><br/>
       <img alt="Instagram Mockup" src="https://github.com/user-attachments/assets/2ec920ce-9cf2-49a2-a6b6-6fdee07e1a83" style="width: 215px; height: 500px; object-fit: cover;" />
     </td>
+      <td align="center">
+      <strong>Diary(Dynamic BG)</strong><br/>
+      <img alt="Diary Mockup" src="https://github.com/user-attachments/assets/25a901ce-4a58-4f9d-bdc8-9fd3fe510d6d" style="width: 215px; height: 500px; object-fit: cover;" />
+    </td>
   </tr>
 </table>
 
@@ -39,6 +43,7 @@ A quick look at all major component:
 
 | Category | Folder |
 |----------|--------|
+
 | Buttons | [`components/buttons`](https://github.com/adityasood04/Compose-Kit/tree/main/app/src/main/java/com/example/composekit/components/buttons) |
 | TextFields | [`components/textFields`](https://github.com/adityasood04/Compose-Kit/tree/main/app/src/main/java/com/example/composekit/components/textfields) |
 
