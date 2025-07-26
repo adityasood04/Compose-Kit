@@ -38,6 +38,7 @@ val componentScreens = listOf(
     UiComponentItem("TextFields", "textfield_screen"),
     UiComponentItem("Tinder", "tinder_screen"),
     UiComponentItem("Instagram", "instagram_screen"),
+    UiComponentItem("Diary (Dynamic BG)", "dynamic_bg_screen"),
 //    UiComponentItem("Animations", "animations_screen"),
 )
 

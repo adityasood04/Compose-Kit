@@ -10,6 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.composekit.screens.MoodDiaryScreen
 import com.example.composekit.screens.AnimationScreen
 import com.example.composekit.screens.ButtonsDemoScreen
 import com.example.composekit.screens.HomeScreen
@@ -49,6 +50,7 @@ fun NavigationComponent(navController: NavHostController) {
         composable(Screen.TextField.route) { TextFieldsDemoScreen() }
         composable(Screen.Tinder.route) { TinderSwipeScreen() }
         composable(Screen.Instagram.route) { InstagramDemoScreen() }
+        composable(Screen.Dynamic_BG.route) {  MoodDiaryScreen() }
         composable(Screen.Animations.route) { AnimationScreen() }
     }
 }
