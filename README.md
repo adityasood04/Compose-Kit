@@ -43,7 +43,6 @@ A quick look at all major component:
 
 | Category | Folder |
 |----------|--------|
-
 | Buttons | [`components/buttons`](https://github.com/adityasood04/Compose-Kit/tree/main/app/src/main/java/com/example/composekit/components/buttons) |
 | TextFields | [`components/textFields`](https://github.com/adityasood04/Compose-Kit/tree/main/app/src/main/java/com/example/composekit/components/textfields) |
 
@@ -57,7 +56,7 @@ A quick look at all major component:
 | TextFieldsDemoScreen | [`screens/TextFieldsDemoScreen`](https://github.com/adityasood04/Compose-Kit/blob/main/app/src/main/java/com/example/composekit/screens/TextFieldsDemoScreen.kt) |
 | Tinder (Card swipe) | [`screens/TinderScreenMockup`](https://github.com/adityasood04/Compose-Kit/tree/main/app/src/main/java/com/example/composekit/screens/TinderScreebMockUp.kt) |
 | Instagram | [`screens/InstagramMockup`](https://github.com/adityasood04/Compose-Kit/tree/main/app/src/main/java/com/example/composekit/screens/InstagramMockup.kt) |
-
+| Diary | [`screens/DiaryEntryScreen`](https://github.com/adityasood04/Compose-Kit/tree/main/app/src/main/java/com/example/composekit/screens/DiaryEntryScreen.kt) |
 
 ---
 
@@ -69,4 +68,14 @@ A quick look at all major component:
 ---
 
 If you find this useful, consider giving it a ⭐ to support the project and help others discover it.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+---
+
+Crafted with ❤️ by [Aditya Sood](https://github.com/adityasood04).  
 
